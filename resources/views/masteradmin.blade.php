@@ -4,6 +4,7 @@
 	<title></title>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
   <link href="{{ asset('css/login.css') }}" rel="stylesheet">
@@ -14,10 +15,12 @@
 </head>
 <body>
 	<nav class="navbar fixed-top navbar-dark navbar-expand">
-		<a class="navbar-brand" href="/">
     <img src="/image/spirit.svg" width="100" alt="">
-  </a>
   <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+              <a class="nav-link" href="/admin/dashboard">DASHBOARD</a>
+              
+            </li>
     <li class="nav-item dropdown">
       <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
        ADMIN <span class="caret"></span>
@@ -34,7 +37,6 @@
     </ul>
 	</nav>
 @yield('content')
-
     <script type="text/javascript">
   $('#confirm').modal('show'); 
 </script>

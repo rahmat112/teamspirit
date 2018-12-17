@@ -3,16 +3,28 @@
 @section('content')
 <div class="container shadow">
 	<div class="row">
-		<div class="col"><a class ="btn btn-primary btn-spirit" style="color: white;" href="/admin/dashboard">Back</a></div>
+		<div class="col-2"><a class ="btn btn-primary btn-spirit" style="color: white;" href="/admin/tim">Back</a>
+    </div>
+    <div class="col-10">
+      <form method="post" class="form-group form-inline" style="float: right;">
+        @csrf
+      <select name="idprov" class="form-control">
+        <option selected="selected">Pilih Provinsi</option>
+        <option value="0">SEMUA</option>
+        @foreach($provinces as $province)
+        <option value="{{$province->id}}">{{$province->name}}</option>
+        @endforeach
+      </select>
+      <button type="submit" class="btn btn-primary btn-spirit" name="formfilter" style="margin-left: 10px;">FILTER</button>
+      </form>
+    </div>
 	</div>
 	<div class="dash_r">
 		<table class="table table-striped">
-  <thead class="thead-dark">
+  <thead class="thead-spirit">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nama Depan</th>
-      <th scope="col">Nama Belakang</th>
-      <th scope="col">Tanggal lahir</th>
+      <th scope="col" style="color: white;">ID</th>
+      <th scope="col">Nama</th>
       <th scope="col">Profesi</th>
       <th scope="col">Kota</th>
       <th scope="col">Provinsi</th>
@@ -22,21 +34,19 @@
   </thead>
   <tbody>
   	@foreach($relawans as $relawan)
-    <tr> 
+    <tr style="text-transform: lowercase;text-transform: capitalize;"> 
       <th scope="row">{{$relawan->id}}</th>
-      <td>{{$relawan->namaDepan}}</td>
-      <td>{{$relawan->namaBelakang}}</td>
-      <td>{{$relawan->tanggalLahir}}</td>
+      <td>{{$relawan->namaDepan}} {{$relawan->namaBelakang}}</td>
       <td>{{$relawan->profesi}}</td>
-      <td>{{$relawan->kota}}</td>
-      <td>{{$relawan->provinsi}}</td>
+      <td>{{$relawan->kot['name']}}</td>
+      <td>{{$relawan->prov['name']}}</td>
       <td>
           @if(is_null($relawan->idTim))
             <button type="button" style="margin: 0px;" class="btn btn-primary btn-spirit" data-toggle="modal" data-target="#tim{{$relawan->id}}">
             Pilih tim </button>
         
           @else
-            {{$relawan->idTim}}
+            {{$relawan->tim['nama']}}
     
           @endif
       </td>
@@ -54,20 +64,17 @@
         </button>
       </div>
       <div class="modal-body" style="padding: 30px">
-        <div class="row">
-          <div class="col">
-            Nama Depan
-          </div>
-          <div class="col">
-            : {{$relawan->namaDepan}}
-          </div>
+        <div class="row" style="margin-bottom: 20px">
+         <div class="col">
+          <div class="cropfoto"><img src="{{ url('uploads/file/'.$relawan->file) }}" class="foto" ></div>
+         </div>
         </div>
         <div class="row">
           <div class="col">
-            Nama Belakang
+            Nama
           </div>
-          <div class="col">
-            : {{$relawan->namaBelakang}}
+          <div class="col" style="text-transform: capitalize;">
+            : {{$relawan->namaDepan}} {{$relawan->namaBelakang}}
           </div>
         </div>
         <div class="row">
@@ -116,7 +123,7 @@
             Provinsi
           </div>
           <div class="col">
-            : {{$relawan->provinsi}}
+            : {{$relawan->prov['name']}}
           </div>
         </div>
         <div class="row">
@@ -124,7 +131,7 @@
             Kota
           </div>
           <div class="col">
-            : {{$relawan->kota}}
+            : {{$relawan->kot['name']}}
           </div>
         </div>
         <div class="row">
@@ -132,7 +139,7 @@
             Kecamatan
           </div>
           <div class="col">
-            : {{$relawan->kecamatan}}
+            : {{$relawan->kec['name']}}
           </div>
         </div>
         <div class="row">
@@ -140,7 +147,7 @@
             Kelurahan
           </div>
           <div class="col">
-            : {{$relawan->kelurahan}}
+            : {{$relawan->kel['name']}}
           </div>
         </div>
       </div>
@@ -160,25 +167,31 @@
         </button>
       </div>
       <div class="modal-body" style="padding: 30px">
+        <div class="form-group">
+          
         <form method="POST">
                         @csrf
         <input type="hidden" name="id" value="{{$relawan->id}}">
-       <select name="idTim">
-         @foreach($tims as $tim)
+       <select name="idTim" class="form-control">
+         @foreach($timsiap as $tim)
           <option value={{$tim->id}}>{{$tim->nama}}</option>
          @endforeach
        </select>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-secondary btn-spirit">Simpan</button>
+        <button type="submit" class="btn btn-secondary btn-spirit" name="formtim">Simpan</button>
         </form>
+        </div>
       </div>
     </div>
   </div>
 </div>
+   
+
     @endforeach
   </tbody>
 </table>
+{{ $relawans->links() }}
 	</div>
 </div>
 

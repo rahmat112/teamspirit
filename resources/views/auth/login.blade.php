@@ -5,7 +5,7 @@
     <div class="col-sm left">
       <img class="logo" src="/image/spirit.svg">
       <hr>
-      <h1> Sistem Pengelolaan <br/>Tim Penanggulangan Bencana </h1>
+      <h1><b> Sistem Pengelolaan <br/>Tim Penanggulangan Bencana </b></h1>
     </div>
     <div class="col-sm right">
       <h5>LOGIN RELAWAN</h5>
@@ -50,4 +50,9 @@
     </div>
     </div>
   </div>
+  <nav class="navbar bottom navbar-light bg-light">
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+    <a class="nav-link" href="/admin">ADMIN</a>
+  </li>
 @endsection

@@ -4,6 +4,7 @@
 	<title></title>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/login.css') }}" rel="stylesheet">
 </head>
@@ -22,7 +23,7 @@
             </li>
       @if (Route::has('register'))
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">{{ __('DAFTAR') }}</a>
+                <a class="nav-link" href="/auth/register">{{ __('DAFTAR') }}</a>
                     </li>
             @endif
         @else

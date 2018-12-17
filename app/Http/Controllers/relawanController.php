@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
 use Request;
 use App\User;
+use App\mobilisasi;
 use Auth;
 use Hash;
 use DB;
@@ -95,12 +96,39 @@ class relawanController extends Controller
 
     }
 
-    public function masukTim(){
-        $relawan = User::find(Request::input('id'));
-        $relawan->idTim=Request::input('idTim');
-        $relawan->save();
-        return redirect('/admin/relawan');
+    // public function masukTim(Request $request){
+    //     if ($request->has('formtim')) {
+    //     $relawan = User::find(Request::input('id'));
+    //     $relawan->idTim=Request::input('idTim');
+    //     $relawan->save();
+    //     return redirect('/admin/relawan');
+    //     }
+       
+    // }
+
+    public function lihatTim(){
+
+        return view('relawan.tim');
     }
+
+     public function lihatMobilisasi(){
+        $user = Auth::user();
+        $mobilisasi = mobilisasi::where('idTim', $user->idTim)->first();
+        return view('relawan.mobilisasi',compact('mobilisasi'));
+    }
+
+    public function laporan(){
+        return view('relawan.laporan');
+    }
+
+    public function isiLaporan(){
+        $user = Auth::user();
+        $mobilisasi = mobilisasi::where('idTim', $user->idTim)->first();
+        $mobilisasi->laporan = Request::input('laporan');
+        $mobilisasi->save();
+        return redirect('/laporan');
+    }
+
 
     /**
      * Remove the specified resource from storage.

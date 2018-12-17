@@ -66,6 +66,12 @@ class RegisterController extends Controller
     {
          Session()->flash('success', 'User successfully created.');
          
+         $file = $data['file'];
+        $ext = $file->getClientOriginalExtension();
+        $newName = rand(100000,1001238912).".".$ext;
+        $file->move('uploads/file',$newName);
+        $data['file'] = $newName;
+        
         return User::create([
             'namaDepan' => $data['namaDepan'],
             'namaBelakang' => $data['namaBelakang'],
@@ -73,11 +79,11 @@ class RegisterController extends Controller
             'jenisKelamin' => $data['jenisKelamin'],
             'noHp' => $data['noHp'],
             'alamat' => $data['alamat'],
-            'foto' => $data['foto'],
-            'provinsi' => $data['provinsi'],
-            'kota' => $data['kota'],
-            'kecamatan' => $data['kecamatan'],
-            'kelurahan' => $data['kelurahan'],
+            'file' => $data['file'],
+            'provinsi' => $data['id_province'],
+            'kota' => $data['id_regency'],
+            'kecamatan' => $data['id_district'],
+            'kelurahan' => $data['id_villages'],
             'kodepos' => $data['kodepos'],
             'profesi' => $data['profesi'],
             'email' => $data['email'],

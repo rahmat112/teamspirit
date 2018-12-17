@@ -4,6 +4,7 @@
 	<title></title>
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
   <link href="{{ asset('css/login.css') }}" rel="stylesheet">
@@ -28,7 +29,7 @@
             </li>
       @if (Route::has('register'))
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">{{ __('DAFTAR') }}</a>
+                <a class="nav-link" href="/auth/register">{{ __('DAFTAR') }}</a>
                     </li>
             @endif
         @else
@@ -37,8 +38,8 @@
               
             </li>
        <li class="nav-item dropdown">
-      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-       {{ Auth::user()->namaDepan." ".Auth::user()->namaBelakang }} <span class="caret"></span>
+      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="text-transform: uppercase;">
+       {{Auth::user()->namaBelakang }} <span class="caret"></span>
         </a>
            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('logout') }}"
@@ -55,7 +56,15 @@
     </ul>
 	</nav>
 @yield('content')
-
+<script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+    </script>
     <script type="text/javascript">
   $('#confirm').modal('show'); 
 </script>

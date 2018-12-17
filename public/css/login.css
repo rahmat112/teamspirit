@@ -1,7 +1,13 @@
 html,body {
 		height: 100%;
+		font-family: 'Open Sans', sans-serif;
 }
-
+.form-control{
+	background-color: #f2f2f2;
+	border: none;
+	border-radius: 10px;	
+	box-shadow: 2px 2px 5px #e2e2e2;
+}
 .navbar-dark {
 	background: linear-gradient(135deg, rgba(66,142,128,1) 0%,rgba(81,175,161,1) 100%);
 }

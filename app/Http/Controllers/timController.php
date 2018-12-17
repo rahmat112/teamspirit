@@ -25,6 +25,13 @@ class timController extends Controller
     }
     }
 
+    public function pilihKetua(Request $request){
+        $tim = tim::find($request->get('id'));
+        $tim->idKetua = $request->get('idKetua');
+        $tim->save();
+        return redirect('/admin/tim/data');
+    }
+
     public function index()
     {
             if(!Session::get('/admin')){
@@ -55,12 +62,10 @@ class timController extends Controller
     {
         
         $tim = new tim([
-            'nama'    =>  $request->get('nama'),
-            'status'     =>  $request->get('status'),
-            'jenis'     =>  $request->get('jenis')
+            'nama'    =>  $request->get('nama')
         ]);
         $tim->save();
-        return redirect('/admin/tim')->with('success', 'Data pegawai berhasil ditambah.');
+        return redirect('/admin/tim/data');
     }
 
     /**
