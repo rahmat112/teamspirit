@@ -60,10 +60,12 @@
     </div>
 </div>
 </div>
+@guest
 <nav class="navbar bottom navbar-light bg-light">
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
     <a class="nav-link" href="/admin">ADMIN</a>
   </li>
 </nav>
+@endguest
 @endsection
