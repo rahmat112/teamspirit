@@ -49,6 +49,11 @@ class adminController extends Controller
   }
 
   // end login
+    // public function showRelawan(){
+    //   $relawans = User::paginate(10);
+    //   return view('admin.relawan');
+    // }
+
 
     public function daftarRelawan(Request $request)
     {
@@ -56,7 +61,6 @@ class adminController extends Controller
       if(!Session::get('/admin')){
       return redirect('/admin')->with('alert','Kamu harus login dulu');
     } else{
-      $relawans=User::paginate(10);
 
       if ($request->has('formtim')) {
           $relawan = User::find($request->id);
@@ -64,13 +68,38 @@ class adminController extends Controller
           $relawan->save();
           return redirect()->back();
       }
-      if ($request->has('formfilter')) {
+      elseif ($request->has('formfilter')) {
         if (($request->idprov)=="0") {
-        $relawans=User::paginate(10);
+        $relawans=User::paginate(20);
         }
         else{
-        $relawans = User::where('provinsi',$request->idprov)->paginate(10);
+        $relawans = User::where('provinsi',$request->idprov)->paginate(20);
         }
+      }
+      elseif ($request->has('formurut')) {
+        if (($request->urut)=="nama") {
+        $relawans=User::orderBy('namaDepan')->paginate(20);
+        }
+        elseif (($request->urut)=="baru") {
+          $relawans=User::orderBy('id','desc')->paginate(20);
+        }
+        elseif (($request->urut)=="id") {
+          $relawans=User::orderBy('id')->paginate(20);
+        }
+        elseif (($request->urut)=="profesi") {
+          $relawans=User::orderBy('profesi')->paginate(20);
+        }
+        elseif (($request->urut)=="tim") {
+          $relawans=User::orderBy('idTim')->paginate(20);
+        }
+        else{
+          $relawans=User::paginate(20);
+        }
+        }
+      else{
+        $relawans=User::paginate(20);
+      }
+
       }
         $provinces=provinces::all();
         $tims = tim::all();
@@ -80,7 +109,6 @@ class adminController extends Controller
         //$relawans = User::sortable()->paginate(10);
         //$relawans = DB::table('relawans')->get();
       
-    }
     //  public function masukTim(Request $request){
     //       $relawans=User::all();
     //     if ($request->has('formtim')) {

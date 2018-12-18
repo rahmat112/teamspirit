@@ -17,6 +17,18 @@
       </select>
       <button type="submit" class="btn btn-primary btn-spirit" name="formfilter" style="margin-left: 10px;">FILTER</button>
       </form>
+      <form method="post" class="form-group form-inline" style="float: right;">
+        @csrf
+      <select name="urut" class="form-control">
+        <option selected="selected" value="id">Pilih Urutan</option>
+        <option value="id">ID</option>
+        <option value="baru">Terbaru</option>
+        <option value="nama">Nama</option>
+        <option value="profesi">Profesi</option>
+        <option value="tim">Tim</option>
+      </select>
+      <button type="submit" class="btn btn-primary btn-spirit" name="formurut" style="margin-left: 10px;margin-right: 10px;">URUTKAN</button>
+      </form>
     </div>
 	</div>
 	<div class="dash_r">
@@ -148,6 +160,14 @@
           </div>
           <div class="col">
             : {{$relawan->kel['name']}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            Waktu daftar
+          </div>
+          <div class="col">
+            : {{$relawan->created_at}}
           </div>
         </div>
       </div>
