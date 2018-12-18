@@ -1,13 +1,14 @@
 @extends('master')
 
 @section('content')
+
 <div class="container shadow"> 
   <div class="row">
     <div class="col home-left" >
       <table>
         <tr>
           <td>
-            <h3><b>Sistem Pengelolaan Tim Penanggulangan Bencana</b></h3>
+            <h3 style="font-weight: bold;">Sistem Pengelolaan Tim Penanggulangan Bencana</h3>
           </td>
         </tr>
         @guest

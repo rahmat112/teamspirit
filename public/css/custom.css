@@ -1,9 +1,10 @@
 
 body {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Quicksand', sans-serif;
 	padding-top: 70px;
 	background: linear-gradient(135deg, rgba(237,237,237,1) 0%,rgba(250,250,250,1) 100%); 
 }
+
 .form-control{
 	background-color: #f2f2f2;
 	border: none;

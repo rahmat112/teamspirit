@@ -15,6 +15,7 @@
       <th scope="col">ID</th>
       <th scope="col">Nama Tim</th>
       <th scope="col">Status</th>
+      <th scope="col">Jumlah Anggota</th>
       <th scope="col">Ketua tim</th>
       <th scope="col">Detail</th>
     </tr>
@@ -25,6 +26,13 @@
       <th scope="row">{{$tim->id}}</th>
       <td>{{$tim->nama}}</td>
       <td>{{$tim->status}}</td>
+      <td>
+        @php
+          $count = DB::table('relawans')->where('idTim', $tim->id)->count();
+        @endphp
+        {{$count}}
+
+      </td>
       <td>
           @if(is_null($tim->idKetua))
             <button type="button" style="margin: 0px;" class="btn btn-primary btn-spirit" data-toggle="modal" data-target="#ketua{{$tim->id}}">
@@ -104,6 +112,7 @@
     @endforeach
   </tbody>
 </table>
+{{ $tims->links() }}
 	</div>
 </div>
 

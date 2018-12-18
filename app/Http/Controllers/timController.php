@@ -17,7 +17,7 @@ class timController extends Controller
 
     public function showTim()
     {
-        $tims = tim::all();
+        $tims = tim::paginate(10);
         if(!Session::get('/admin')){
       return redirect('/admin')->with('alert','Kamu harus login dulu');
     } else{
@@ -29,7 +29,7 @@ class timController extends Controller
         $tim = tim::find($request->get('id'));
         $tim->idKetua = $request->get('idKetua');
         $tim->save();
-        return redirect('/admin/tim/data');
+        return redirect()->back();
     }
 
     public function index()

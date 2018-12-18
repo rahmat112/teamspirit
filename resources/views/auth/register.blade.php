@@ -88,7 +88,7 @@
       <div class="form-group">
         <label>Foto</label>
       <div class="form-group" >
-  <input type="file" name="file">
+  <input type="file" name="file" required="">
 
 </div>
     </div>
